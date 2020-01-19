@@ -15,8 +15,8 @@ public abstract class Product {
 		}
 		
 
-		if (price==null || price.compareTo(BigDecimal.ZERO) < 0) {
-		//if (price==null || price.compareTo(new BigDecimal("0")) < 0) {
+		//if (price==null || price.compareTo(BigDecimal.ZERO) < 0) {
+		if (price==null || price.compareTo(new BigDecimal("0")) < 0) {
 			throw new IllegalArgumentException("Bad price.");
 		}
 		
