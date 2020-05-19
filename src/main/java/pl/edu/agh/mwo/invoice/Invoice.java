@@ -69,8 +69,8 @@ public class Invoice {
         ArrayList<String> lines = new ArrayList<String>();
         lines.add("Numer faktury: " + String.valueOf(getNumber()));
         for (Product p : products.keySet()) {
-            lines.add("Nazwa: " + p.getName() + " " + "Cena: " + String.valueOf(p.getPrice()) + " " + "Liczba sztuk: "
-                    + products.get(p));
+            lines.add("Nazwa: " + p.getName() + " " + "Cena: " + String.valueOf(p.getPrice()) 
+            + " " + "Liczba sztuk: " + products.get(p));
         }
         lines.add("Ilość pozycji na fakturze: " + Integer.toString(products.size()));
         return lines;
