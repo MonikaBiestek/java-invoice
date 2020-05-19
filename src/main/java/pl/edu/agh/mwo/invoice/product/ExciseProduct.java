@@ -11,6 +11,6 @@ public abstract class ExciseProduct extends Product {
 
 	public BigDecimal getPriceWithTax() {
 		return super.getPriceWithTax().add(excise);
-		}
-	
+	}
+
 }
