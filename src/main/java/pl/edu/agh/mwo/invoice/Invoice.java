@@ -8,6 +8,8 @@ import java.util.Map;
 import org.hamcrest.Matchers;
 //import org.junit.Assert;
 
+import pl.edu.agh.mwo.invoice.product.OtherProduct;
+//import pl.edu.agh.mwo.invoice.product.OtherProduct;
 import pl.edu.agh.mwo.invoice.product.Product;
 import pl.edu.agh.mwo.invoice.product.TaxFreeProduct;
 
@@ -58,15 +60,27 @@ public class Invoice {
     public int getNumber() {
         return number;
     }
+    
 
-	public ArrayList<String> prepareInvoice() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
+    
+    public ArrayList<String> prepareInvoice() {
+ArrayList<String> lines=new ArrayList<String>();
+lines.add("Invoice number: " + Integer.toString(getNumber()));
+for(Product p: products.keySet()) {
+	lines.add("Name: " + p.getName()+ " " + "Price: " + p.getPrice().toString()+ " " + "Quantity: " +String.valueOf(products.get(p)));
+}
+lines.add("Amount of positions on the invoice: " + Integer.toString(products.size()));
+		return lines;
+    }
+    
+  public  void printInvoice() {
+	  ArrayList<String> lines=prepareInvoice();
+	  for(int i=0; i<lines.size(); i++) {
+		  System.out.println(lines.get(i));
+	  }	 	  
+  }
+  
+ 
     
     
 }
