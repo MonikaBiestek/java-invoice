@@ -18,10 +18,6 @@ public class Invoice {
         addProduct(product, 1);
     }
 
-    public Map<Product, Integer> getProducts() {
-        return products;
-    }
-
     public void addProduct(Product product, Integer quantity) {
         if (product == null || quantity <= 0) {
             throw new IllegalArgumentException();
@@ -30,6 +26,10 @@ public class Invoice {
         } else {
             products.put(product, quantity);
         }
+    }
+
+    public Map<Product, Integer> getProducts() {
+        return products;
     }
 
     public BigDecimal getNetTotal() {
