@@ -137,8 +137,8 @@ public class InvoiceTest {
 
         ArrayList<String> invoiceList=invoice.prepareInvoice(); 
         ArrayList<String> invoicelistExpected = new ArrayList<>();
-        invoicelistExpected.add("Invoice number: " + Integer.toString(invoice.getNumber()));
-        invoicelistExpected.add("Amount of positions on the invoice: 0");
+        invoicelistExpected.add("Numer faktury: " + Integer.toString(invoice.getNumber()));
+        invoicelistExpected.add("Ilość pozycji na fakturze: 0");
         Assert.assertEquals(invoicelistExpected, invoiceList);
     } 
     
