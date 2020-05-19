@@ -132,7 +132,48 @@ public class InvoiceTest {
         Assert.assertThat(number1, Matchers.lessThan(number2));
     }
     
+    @Test
+    public void testprepareInvoiceNoProducts() {
 
+        ArrayList<String> invoiceList=invoice.prepareInvoice(); 
+        ArrayList<String> invoicelistExpected = new ArrayList<>();
+        invoicelistExpected.add("Invoice number: " + Integer.toString(invoice.getNumber()));
+        invoicelistExpected.add("Amount of positions on the invoice: 0");
+        Assert.assertEquals(invoicelistExpected, invoiceList);
+    } 
+    
+    
+    
+    @Test
+    public void testprepareInvoiceFirstElementContainsInvoiceNumber() {
+    	Product product=new TaxFreeProduct("Chleb", new BigDecimal("5"));
+        invoice.addProduct(product);
+        ArrayList<String> invoiceList=invoice.prepareInvoice();        
+        String firstElement=invoiceList.get(0).replaceAll("[^0-9]+", "");
+        Assert.assertThat(String.valueOf(invoice.getNumber()), Matchers.comparesEqualTo(firstElement));
+    } 
+    
+
+    
+    @Test
+    public void testprepareInvoiceLastElementContainsProductSize() {
+    	Product product=new TaxFreeProduct("Chleb", new BigDecimal("5"));
+        invoice.addProduct(product);
+        ArrayList<String> invoiceList=invoice.prepareInvoice();        
+        String lastElement=invoiceList.get(invoiceList.size()-1).replaceAll("[^0-9]+", "");
+        Assert.assertThat("1", Matchers.comparesEqualTo(lastElement));
+    } 
+    
+    
+    @Test
+    public void testprepareInvoiceContainsProductSizeElementsPlusTwo() {
+    	Product product=new TaxFreeProduct("Chleb", new BigDecimal("5"));
+        invoice.addProduct(product);
+        invoice.addProduct(product);
+        ArrayList<String> invoiceList=invoice.prepareInvoice();
+
+        Assert.assertThat(invoice.getProducts().size()+2, Matchers.comparesEqualTo(invoiceList.size()));
+    }
     
     @Test
     public void testAddTheSameProductToInvoice() {

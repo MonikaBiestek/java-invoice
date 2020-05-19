@@ -58,7 +58,12 @@ public class Invoice {
     public int getNumber() {
         return number;
     }
-    
+
+	public ArrayList<String> prepareInvoice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 
