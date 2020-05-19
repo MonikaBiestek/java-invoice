@@ -1,9 +1,15 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.hamcrest.Matchers;
+//import org.junit.Assert;
+
 import pl.edu.agh.mwo.invoice.product.Product;
+import pl.edu.agh.mwo.invoice.product.TaxFreeProduct;
 
 public class Invoice {
     private Map<Product, Integer> products = new HashMap<>();
@@ -13,14 +19,18 @@ public class Invoice {
     public void addProduct(Product product) {
         addProduct(product, 1);
     }
+    
+    public Map<Product, Integer> getProducts() {
+    	return  products;
+    }
 
     public void addProduct(Product product, Integer quantity) {
         if (product == null || quantity <= 0) {
-            throw new IllegalArgumentException();
-        }
+            throw new IllegalArgumentException();        
+        }else {        
         products.put(product, quantity);
     }
-
+    }
     public BigDecimal getNetTotal() {
         BigDecimal totalNet = BigDecimal.ZERO;
         for (Product product : products.keySet()) {
@@ -46,4 +56,10 @@ public class Invoice {
     public int getNumber() {
         return number;
     }
+    
+
+
+
+    
+    
 }
