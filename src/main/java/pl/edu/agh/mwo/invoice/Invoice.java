@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import pl.edu.agh.mwo.invoice.product.Product;
+import pl.edu.agh.mwo.invoice.product.TaxFreeProduct;
 
 public class Invoice {
 
@@ -17,16 +18,13 @@ public class Invoice {
     public void addProduct(Product product) {
         addProduct(product, 1);
     }
-
-    public void addProduct(Product product, Integer quantity) {
-        if (product == null || quantity <= 0) {
-            throw new IllegalArgumentException();
-        } else if (products.containsKey(product)) {
-            products.put(product, quantity + products.get(product));
-        } else {
-            products.put(product, quantity);
-        }
-    }
+    
+     
+      public void addProduct(Product product, Integer quantity) { if (product ==
+      null || quantity <= 0) { throw new IllegalArgumentException(); } else if
+      (products.containsKey(product)) { products.put(product, quantity +
+      products.get(product)); } else { products.put(product, quantity); } }
+     
 
     public Map<Product, Integer> getProducts() {
         return products;
@@ -69,10 +67,11 @@ public class Invoice {
         ArrayList<String> lines = new ArrayList<String>();
         lines.add("Numer faktury: " + String.valueOf(getNumber()));
         for (Product p : products.keySet()) {
-            lines.add("Nazwa: " + p.getName() + " " + "Cena: " + String.valueOf(p.getPrice())
-                + " " + "Liczba sztuk: " + products.get(p));
+            lines.add("Nazwa: " + p.getName() + " " + "Cena: " + String.valueOf(p.getPrice()) + " " + "Liczba sztuk: "
+                    + products.get(p));
         }
         lines.add("Ilość pozycji na fakturze: " + Integer.toString(products.size()));
         return lines;
     }
+
 }

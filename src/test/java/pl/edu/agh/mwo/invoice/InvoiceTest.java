@@ -164,8 +164,9 @@ public class InvoiceTest {
 	@Test
 	public void testprepareInvoiceContainsProductSizeElementsPlusTwo() {
 		Product product = new TaxFreeProduct("Cukierki", new BigDecimal("5"));
+		Product product1 = new TaxFreeProduct("Cukierki", new BigDecimal("5"));
 		invoice.addProduct(product);
-		invoice.addProduct(product);
+		invoice.addProduct(product1);
 		ArrayList<String> invoiceList = invoice.prepareInvoice();
 
 		Assert.assertThat(invoice.getProducts().size() + 2, Matchers.comparesEqualTo(invoiceList.size()));
@@ -174,16 +175,18 @@ public class InvoiceTest {
 	@Test
 	public void testAddTheSameProductToInvoiceCheckQuantity() {
 		Product product = new FuelCanister("Fuel1", new BigDecimal("100"));
+		Product product1 = new FuelCanister("Fuel1", new BigDecimal("100"));
 		invoice.addProduct(product, 2);
-		invoice.addProduct(product, 2);
+		invoice.addProduct(product1, 2);
 		Assert.assertThat(4, Matchers.comparesEqualTo((invoice.getProducts()).get(product)));
 	}
 
 	@Test
 	public void testAddTheSameProductToInvoiceCheckAmount() {
 		Product product = new TaxFreeProduct("Chleb", new BigDecimal("5"));
+		Product product1 = new TaxFreeProduct("Chleb", new BigDecimal("5"));
 		invoice.addProduct(product);
-		invoice.addProduct(product);
+		invoice.addProduct(product1);
 		Assert.assertThat(1, Matchers.comparesEqualTo(invoice.getProducts().size()));
 	}
 
